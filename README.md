@@ -1,5 +1,6 @@
 # Excalibur
 
+[![Gem Version](https://badge.fury.io/rb/excalibur.svg)](http://badge.fury.io/rb/excalibur)
 [![Build Status](https://travis-ci.org/yopefonic/excalibur.svg)](https://travis-ci.org/yopefonic/excalibur)
 [![Code Climate](https://codeclimate.com/github/yopefonic/excalibur/badges/gpa.svg)](https://codeclimate.com/github/yopefonic/excalibur)
 
