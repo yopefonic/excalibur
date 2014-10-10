@@ -68,8 +68,8 @@ decorator. Because of this you need to supply it with the same type of object
 to make that possible.
 
 Notably the second argument of ```entitle``` can also pass other
-[Draper](https://github.com/drapergem/draper) related options like
-```:context```.
+[Draper](https://github.com/drapergem/draper) related options like draper's
+context.
 
 ```ruby
 entitle @your_object, config: @custom_config
