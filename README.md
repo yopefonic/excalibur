@@ -1,5 +1,8 @@
 # Excalibur
 
+[![Build Status](https://travis-ci.org/yopefonic/excalibur.svg)](https://travis-ci.org/yopefonic/excalibur)
+[![Code Climate](https://codeclimate.com/github/yopefonic/excalibur/badges/gpa.svg)](https://codeclimate.com/github/yopefonic/excalibur)
+
 Excalibur is a SEO gem for [Ruby on Rails](rubyonrails.org) and helps you to
 set the title and meta tags for you site overall and per page. Unlike other
 options like [meta-tags](https://github.com/kpumuk/meta-tags) and
