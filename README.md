@@ -4,12 +4,23 @@
 [![Build Status](https://travis-ci.org/yopefonic/excalibur.svg)](https://travis-ci.org/yopefonic/excalibur)
 [![Code Climate](https://codeclimate.com/github/yopefonic/excalibur/badges/gpa.svg)](https://codeclimate.com/github/yopefonic/excalibur)
 
-Excalibur is a SEO gem for [Ruby on Rails](rubyonrails.org) and helps you to
-set the title and meta tags for you site overall and per page. Unlike other
-options like [meta-tags](https://github.com/kpumuk/meta-tags) and
-[meta_magic](https://github.com/lassebunk/metamagic) Excalibur focusses on
-providing an object based DSL to turn the objects you are presenting on the
-page into SEO related tags in the head.
+Excalibur is a SEO related gem for [Ruby on Rails](rubyonrails.org) that helps
+you to set the title and meta tags for your site overall and per page in a
+nicely structured and with separated concerns.
+
+Setting titles and meta tags for pages can become a hassle when dealing with
+more complex SEO requirements. When adding [OpenGraph](http://ogp.me/),
+[Twitter Cards](https://dev.twitter.com/cards/overview) or
+[schema.org](http://schema.org/docs/gs.html) for Google+ there are a host of
+options that differ from object to object. You could add methods to the object
+model to create these meta tags but that would put rendering concerns into
+model's class. Not an ideal situation. Other option could be to create helper
+methods but as you need to present more than 3 different object they can
+become cluttered, long and unyielding.
+
+In comes Excalibur; object presentors that have all the logic per object type,
+convenient helper methods to print them on the page and an application wide
+default configuration.
 
 ## Installation
 

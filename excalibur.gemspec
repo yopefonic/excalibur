@@ -8,8 +8,12 @@ Gem::Specification.new do |spec|
   spec.version       = Excalibur::VERSION
   spec.authors       = ['Joost Elfering']
   spec.email         = ['yopefonic@gmail.com']
-  spec.summary       = %q{helper gem to set page title and meta tags in a rails app}
-  spec.description   = %q{helper gem for rails apps to set the title and meta tags for a page. The helper can take custom input per page, objects that use decorator to determine the tags or an application wide configurable default.}
+  spec.summary       = %q{helper gem to set page title and meta tags in a
+                        rails app}
+  spec.description   = %q{Excalibur is a SEO related gem for Ruby on Rails
+                        that helps you to set the title and meta tags for your
+                        site overall and per page in a nicely structured and
+                        with separated concerns.}
   spec.homepage      = 'https://github.com/yopefonic/excalibur'
   spec.license       = 'MIT'
 
