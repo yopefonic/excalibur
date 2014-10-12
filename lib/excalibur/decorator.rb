@@ -21,6 +21,10 @@ module Excalibur
         @configuration ||= ::Excalibur.configuration.dup
       end
 
+      # methods:
+      # excalibur_set_title_content, excalibur_set_title_option,
+      # excalibur_set_title_combinator, excalibur_set_description_content,
+      # excalibur_set_description_option, excalibur_set_description_combinator
       def method_missing(meth, *args)
         if meth.to_s =~ /^excalibur_set_(title|description+)_(content|option|combinator+)$/
           configuration.send($1).send("update_#{$2}", *args)
@@ -48,8 +52,18 @@ module Excalibur
       configuration.merge!(config)
     end
 
-    def render_title(obj = self)
-      configuration.title.to_s(obj) if configuration.title.present?
+    # methods: render_title, render_description
+    def method_missing(meth, *args)
+      if meth.to_s =~ /^render_(title|description+)$/
+        obj = args.first || self
+        subject = configuration.send($1)
+
+        if subject.present?
+          subject.to_s(obj)
+        end
+      else
+        super
+      end
     end
   end
 end

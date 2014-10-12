@@ -80,9 +80,7 @@ module Excalibur
     def new_default_meta_tags
       ::HashWithIndifferentAccess.new(
           name: ::HashWithIndifferentAccess.new(
-              description: proc do |obj|
-                obj.configuration.description.to_s(obj)
-              end,
+              description: proc { |obj| obj.render_description },
               viewport: 'width=device-width, initial-scale=1'
           )
       )

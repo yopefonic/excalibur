@@ -220,5 +220,19 @@ module Excalibur
         end
       end
     end
+
+    describe '#render_description' do
+      let(:obj) { DummyDecorator.decorate(Dummy.new) }
+
+      context 'when using the default settings' do
+        it { expect(obj.render_description).to eq('Excalibur; a worthy title for a gem about titles.') }
+
+        it 'should call to_s in the title' do
+          expect(obj.configuration.description).to receive(:to_s)
+
+          obj.render_description
+        end
+      end
+    end
   end
 end
