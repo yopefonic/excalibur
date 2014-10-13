@@ -6,6 +6,19 @@ module Excalibur
       @excalibur_subject = excalibur_decorate_subject(object, options)
     end
 
+    def quick_set(type, *args)
+      case type
+        when :title, :description
+          section = args.shift
+          excalibur_subject.configuration.send(type).send(
+              "update_#{section}",
+              *args
+          )
+        when :meta_tag
+          excalibur_subject.configuration.set_meta_tag(*args)
+      end
+    end
+
     def render_title_tag
       content_tag :title, excalibur_subject.render_title
     end

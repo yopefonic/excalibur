@@ -31,6 +31,42 @@ module Excalibur
       end
     end
 
+    describe '#quick_set' do
+      it 'should be able to set a meta tag' do
+        expect_any_instance_of(Configuration).to receive(:set_meta_tag).with(:name, :description, 'quick set value')
+
+        helpers.quick_set(:meta_tag, :name, :description, 'quick set value')
+
+        expect(helpers.instance_variable_get(:@excalibur_subject)).to be_instance_of Decorator
+      end
+
+      [:title, :description].each do |type|
+        it "should be able to set #{type} content" do
+          expect_any_instance_of(TruncateableContent).to receive(:update_content).with(:body, 'quick set value')
+
+          helpers.quick_set(type, :content, :body, 'quick set value')
+
+          expect(helpers.instance_variable_get(:@excalibur_subject)).to be_instance_of Decorator
+        end
+
+        it "should be able to set #{type} options" do
+          expect_any_instance_of(TruncateableContent).to receive(:update_option).with(:length, 42)
+
+          helpers.quick_set(type, :option, :length, 42)
+
+          expect(helpers.instance_variable_get(:@excalibur_subject)).to be_instance_of Decorator
+        end
+
+        it "should be able to set #{type} combinator" do
+          expect_any_instance_of(TruncateableContent).to receive(:update_combinator).with('foobar')
+
+          helpers.quick_set(type, :combinator, 'foobar')
+
+          expect(helpers.instance_variable_get(:@excalibur_subject)).to be_instance_of Decorator
+        end
+      end
+    end
+
     describe '#render_title_tag' do
       context 'when the configuration is standard' do
         it 'should return a title tag with the default content' do

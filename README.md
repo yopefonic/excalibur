@@ -90,6 +90,24 @@ context.
 entitle @your_object, config: @custom_config
 ```
 
+### Views without an object
+
+In some cases you might not have an object to present. Like when on a
+collection page or when dealing with a static page. There is a helper method
+that allows you to set some custom values. ```quick_set``` takes a couple of
+arguments to set the values of titles, descriptions and meta_tags.
+
+These are some examples of what you can set:
+
+```erb
+<%
+  quick_set :title, :content, :body, 'custom quick set title body'
+  quick_set :description, :option, :length, 42
+  quick_set :title, :combinator, proc { |obj| custom_code }
+  quick_set :meta_tag, :name, :description, 'custom quick set meta tag'
+%>
+```
+
 ### Decorators
 
 The decorators are what turns your object into data that can be used for the
