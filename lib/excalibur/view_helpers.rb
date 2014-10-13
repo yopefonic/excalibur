@@ -24,7 +24,7 @@ module Excalibur
                 :meta,
                 type_name => type_value,
                 content: content
-            )
+            ) unless content.nil?
           end
         end
       end
