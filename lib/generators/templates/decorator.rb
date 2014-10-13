@@ -71,5 +71,6 @@ class Excalibur::<%= class_name %>Decorator < Excalibur::Decorator
   # responsibility. The decorator becomes easier to test and it is also a lot
   # cleaner.
   #
-  # TODO: An article about how to do it properly will come soon!
+  # read more about how to use decorators with procs properly:
+  # https://github.com/yopefonic/excalibur/wiki/Advised-usage-of-proc%27s
 end
