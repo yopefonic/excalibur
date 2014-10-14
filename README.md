@@ -116,7 +116,7 @@ meta tags and the title. So without a decorator for an object the view helper
 
 To scaffold a decorator execute:
 
-    rails generate excalibur:install [class name]
+    rails generate excalibur:decorator [class name]
 
 A detailed description on how the decorators work can be found in the newly
 created decorator class. As a side note the ```Excalibur::Decorator``` is a
