@@ -4,6 +4,7 @@ require 'action_view/helpers'
 
 class Dummy; end
 class Klass; end
+class OtherDecorator < Draper::Decorator; end
 
 module Excalibur
   class DummyDecorator < Decorator; end
@@ -15,19 +16,32 @@ module Excalibur
     end
 
     describe '#entitle' do
-      let(:obj) { Dummy.new }
+      context 'when dealing with a blank object' do
+        let(:obj) { Dummy.new }
 
-      it 'should try and decorate an object' do
-        expect(DummyDecorator).to receive(:decorate).with(obj, {})
+        it 'should try and decorate an object' do
+          expect(DummyDecorator).to receive(:decorate).with(obj, {})
 
-        helpers.entitle(obj, {})
+          helpers.entitle(obj, {})
+        end
+
+        it 'should set an instance variable' do
+          helpers.entitle(obj, {})
+
+          expect(helpers.instance_variable_get(:@excalibur_subject)).to be_present
+          expect(helpers.instance_variable_get(:@excalibur_subject)).to be_instance_of DummyDecorator
+        end
       end
 
-      it 'should set an instance variable' do
-        helpers.entitle(obj, {})
+      context 'when dealing with a decorated object' do
+        let(:origin) { Dummy.new }
+        let(:obj) { OtherDecorator.decorate(origin) }
 
-        expect(helpers.instance_variable_get(:@excalibur_subject)).to be_present
-        expect(helpers.instance_variable_get(:@excalibur_subject)).to be_instance_of DummyDecorator
+        it 'should try and decorate an object' do
+          expect(DummyDecorator).to receive(:decorate).with(origin, {})
+
+          helpers.entitle(obj, {})
+        end
       end
     end
 
