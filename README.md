@@ -90,6 +90,16 @@ context.
 entitle @your_object, config: @custom_config
 ```
 
+In some cases the object you are trying to ```entitle``` will be of a
+different class than you would have the decorator created for. You might work
+with single table inheritance or are using sub-classes. In this case you can
+pass a ```:class_name``` option. That will be used to find the correct
+excalibur decorator in your app.
+
+```ruby
+entitle @your_object, class_name: CustomKlass
+```
+
 ### Views without an object
 
 In some cases you might not have an object to present. Like when on a
