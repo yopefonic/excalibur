@@ -33,6 +33,22 @@ module Excalibur
         end
       end
 
+      context 'when dealing with a custom object' do
+        let(:obj) { true }
+
+        it 'should try and decorate an object from a class' do
+          expect(DummyDecorator).to receive(:decorate).with(obj, {})
+
+          helpers.entitle(obj, class_name: Dummy)
+        end
+
+        it 'should try and decorate an object from a string' do
+          expect(DummyDecorator).to receive(:decorate).with(obj, {})
+
+          helpers.entitle(obj, class_name: 'Dummy')
+        end
+      end
+
       context 'when dealing with a decorated object' do
         let(:origin) { Dummy.new }
         let(:obj) { OtherDecorator.decorate(origin) }

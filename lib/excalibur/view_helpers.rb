@@ -64,11 +64,13 @@ module Excalibur
     end
 
     def excalibur_decorate_subject(object, options = {})
-      class_name = if object.is_a?(Draper::Decorator)
-                     object.object.class.name
-                   else
-                     object.class.name
-                   end
+      class_name =  if options.key?(:class_name)
+                      options.delete(:class_name)
+                    elsif object.is_a?(Draper::Decorator)
+                      object.object.class.name
+                    else
+                      object.class.name
+                    end
 
       Object.const_get(
           "::Excalibur::#{class_name}Decorator"
