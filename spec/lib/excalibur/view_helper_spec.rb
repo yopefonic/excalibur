@@ -17,7 +17,7 @@ module Excalibur
 
     describe '#entitle' do
       context 'when dealing with a blank object' do
-        let(:obj) { Dummy.new }
+        let(:obj) { ::Dummy.new }
 
         it 'should try and decorate an object' do
           expect(DummyDecorator).to receive(:decorate).with(obj, {})
@@ -39,7 +39,7 @@ module Excalibur
         it 'should try and decorate an object from a class' do
           expect(DummyDecorator).to receive(:decorate).with(obj, {})
 
-          helpers.entitle(obj, class_name: Dummy)
+          helpers.entitle(obj, class_name: ::Dummy)
         end
 
         it 'should try and decorate an object from a string' do
@@ -50,7 +50,7 @@ module Excalibur
       end
 
       context 'when dealing with a decorated object' do
-        let(:origin) { Dummy.new }
+        let(:origin) { ::Dummy.new }
         let(:obj) { OtherDecorator.decorate(origin) }
 
         it 'should try and decorate an object' do
@@ -109,7 +109,7 @@ module Excalibur
           DummyDecorator.excalibur_set_title_content :body, 'New custom title'
           DummyDecorator.excalibur_set_title_content :prefix, '()==|::::::> '
 
-          helpers.entitle(Dummy.new)
+          helpers.entitle(::Dummy.new)
         end
 
         it 'should return a title tag with the custom title content' do
@@ -134,7 +134,7 @@ module Excalibur
           DummyDecorator.excalibur_set_meta_tag :foo, :proc, proc { |obj| obj.class.to_s }
           DummyDecorator.excalibur_set_meta_tag :foo, :nil, nil
 
-          helpers.entitle(Dummy.new)
+          helpers.entitle(::Dummy.new)
         end
 
         it 'should return a title tag with the custom title content' do
