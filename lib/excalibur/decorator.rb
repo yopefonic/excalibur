@@ -58,9 +58,7 @@ module Excalibur
         obj = args.first || self
         subject = configuration.send($1)
 
-        if subject.present?
-          subject.to_s(obj)
-        end
+        subject.to_s(obj) if subject.present?
       else
         super
       end
