@@ -48,17 +48,17 @@ module Excalibur
         DummyDecorator.configuration = nil
 
         class DummyDecorator < Decorator
-          excalibur_set_meta_tag(:foo, :bar, proc { |obj| 'content' })
-          excalibur_set_meta_tag(:name, :other, 'content')
+          exc_meta_tag(:foo, :bar, proc { |obj| 'content' })
+          exc_meta_tag(:name, :other, 'content')
 
-          excalibur_set_title_content(:prefix, 'Exc / ')
-          excalibur_set_title_content(:body, 'title body')
-          excalibur_set_title_option(:length, 42)
-          excalibur_set_title_combinator proc{ |obj| "result #{obj}" }
+          exc_title_content(:prefix, 'Exc / ')
+          exc_title_content(:body, 'title body')
+          exc_title_option(:length, 42)
+          exc_title_combinator proc{ |obj| "result #{obj}" }
 
-          excalibur_set_description_content(:body, 'title body')
-          excalibur_set_description_option(:length, 42)
-          excalibur_set_description_combinator proc{ |obj| "result #{obj}" }
+          exc_description_content(:body, 'title body')
+          exc_description_option(:length, 42)
+          exc_description_combinator proc{ |obj| "result #{obj}" }
         end
       end
 
@@ -79,12 +79,12 @@ module Excalibur
       it { expect(DummyDecorator.configuration.description.combinator.call('foobar')).to eq('result foobar') }
     end
 
-    describe '::excalibur_init' do
+    describe '::exc_init' do
       context 'when creating a decorator' do
         context 'when setting the config without a value' do
           before do
             class DummyDecorator < Decorator
-              excalibur_init
+              exc_init
             end
           end
 
@@ -95,7 +95,7 @@ module Excalibur
         context 'when setting the config with a value' do
           before do
             class DummyDecorator < Decorator
-              excalibur_init true
+              exc_init true
             end
           end
 
@@ -121,12 +121,12 @@ module Excalibur
       end
     end
 
-    describe '::excalibur_set' do
+    describe '::exc' do
       describe '_title' do
         describe '_content' do
           it 'should change the title content' do
             expect {
-              DummyDecorator.excalibur_set_title_content(:foo, 'bar')
+              DummyDecorator.exc_title_content(:foo, 'bar')
             }.to change(DummyDecorator.configuration.title, :content).to(body: 'Excalibur', foo: 'bar')
           end
         end
@@ -134,7 +134,7 @@ module Excalibur
         describe '_option' do
           it 'should change the title options' do
             expect {
-              DummyDecorator.excalibur_set_title_option(:foo, 'bar')
+              DummyDecorator.exc_title_option(:foo, 'bar')
             }.to change(DummyDecorator.configuration.title, :options).to(length: 69, omission: '...', separator: '', foo: 'bar')
           end
         end
@@ -142,7 +142,7 @@ module Excalibur
         describe '_combinator' do
           it 'should change the title combinator' do
             expect {
-              DummyDecorator.excalibur_set_title_combinator(true)
+              DummyDecorator.exc_title_combinator(true)
             }.to change(DummyDecorator.configuration.title, :combinator).to(true)
           end
         end
@@ -152,7 +152,7 @@ module Excalibur
         describe '_content' do
           it 'should change the description content' do
             expect {
-              DummyDecorator.excalibur_set_description_content(:foo, 'bar')
+              DummyDecorator.exc_description_content(:foo, 'bar')
             }.to change(DummyDecorator.configuration.description, :content).to(body: 'Excalibur; a worthy title for a gem about titles.', foo: 'bar')
           end
         end
@@ -160,7 +160,7 @@ module Excalibur
         describe '_option' do
           it 'should change the description options' do
             expect {
-              DummyDecorator.excalibur_set_description_option(:foo, 'bar')
+              DummyDecorator.exc_description_option(:foo, 'bar')
             }.to change(DummyDecorator.configuration.description, :options).to(length: 155, omission: '...', separator: ' ', foo: 'bar')
           end
         end
@@ -168,7 +168,7 @@ module Excalibur
         describe '_combinator' do
           it 'should change the description combinator' do
             expect {
-              DummyDecorator.excalibur_set_description_combinator(true)
+              DummyDecorator.exc_description_combinator(true)
             }.to change(DummyDecorator.configuration.description, :combinator).to(true)
           end
         end
@@ -178,7 +178,7 @@ module Excalibur
         it 'should change the meta tags' do
           expect(DummyDecorator.configuration).to receive(:set_meta_tag).with(:name, :description, 'foobar')
 
-          DummyDecorator.excalibur_set_meta_tag(:name, :description, 'foobar')
+          DummyDecorator.exc_meta_tag(:name, :description, 'foobar')
         end
       end
     end

@@ -106,8 +106,8 @@ module Excalibur
 
       context 'when the configuration changed' do
         before do
-          DummyDecorator.excalibur_set_title_content :body, 'New custom title'
-          DummyDecorator.excalibur_set_title_content :prefix, '()==|::::::> '
+          DummyDecorator.exc_title_content :body, 'New custom title'
+          DummyDecorator.exc_title_content :prefix, '()==|::::::> '
 
           helpers.entitle(::Dummy.new)
         end
@@ -128,11 +128,11 @@ module Excalibur
 
       context 'when the configuration changed' do
         before do
-          DummyDecorator.excalibur_set_description_content :body, 'New custom description'
-          DummyDecorator.excalibur_set_meta_tag :foo, :bar, 'baz'
-          DummyDecorator.excalibur_set_meta_tag :foo, :array, ['foo', 'bar', 'baz']
-          DummyDecorator.excalibur_set_meta_tag :foo, :proc, proc { |obj| obj.class.to_s }
-          DummyDecorator.excalibur_set_meta_tag :foo, :nil, nil
+          DummyDecorator.exc_description_content :body, 'New custom description'
+          DummyDecorator.exc_meta_tag :foo, :bar, 'baz'
+          DummyDecorator.exc_meta_tag :foo, :array, ['foo', 'bar', 'baz']
+          DummyDecorator.exc_meta_tag :foo, :proc, proc { |obj| obj.class.to_s }
+          DummyDecorator.exc_meta_tag :foo, :nil, nil
 
           helpers.entitle(::Dummy.new)
         end

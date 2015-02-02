@@ -13,8 +13,13 @@ module Excalibur
     class << self
       attr_writer :configuration
 
-      def excalibur_init(config = configuration)
+      def exc_init(config = configuration)
         @configuration = config
+      end
+
+      def excalibur_init(*args)
+        warn "[DEPRECATION] `excalibur_init` is deprecated.  Please use `exc_init` instead."
+        exc_init(*args)
       end
 
       def configuration
@@ -26,15 +31,23 @@ module Excalibur
       # excalibur_set_title_combinator, excalibur_set_description_content,
       # excalibur_set_description_option, excalibur_set_description_combinator
       def method_missing(meth, *args)
-        if meth.to_s =~ /^excalibur_set_(title|description+)_(content|option|combinator+)$/
+        if meth.to_s =~ /^exc_(title|description+)_(content|option|combinator+)$/
           configuration.send($1).send("update_#{$2}", *args)
+        elsif meth.to_s =~ /^excalibur_set_(title|description+)_(content|option|combinator+)$/
+          warn "[DEPRECATION] `excalibur_set_#{$1}_#{$2}` is deprecated.  Please use `exc_#{$1}_#{$2}` instead."
+          self.send("exc_#{$1}_#{$2}", *args)
         else
           super
         end
       end
 
-      def excalibur_set_meta_tag(type, name, value = nil)
+      def exc_meta_tag(type, name, value = nil)
         configuration.set_meta_tag(type, name, value)
+      end
+
+      def excalibur_set_meta_tag(*args)
+        warn "[DEPRECATION] `excalibur_set_meta_tag` is deprecated.  Please use `exc_meta_tag` instead."
+        exc_meta_tag(*args)
       end
     end
 
