@@ -18,7 +18,7 @@ module Excalibur
       end
 
       def excalibur_init(*args)
-        warn "[DEPRECATION] `excalibur_init` is deprecated.  Please use `exc_init` instead."
+        warn '[DEPRECATION] `excalibur_init` is deprecated.  Please use `exc_init` instead.'
         exc_init(*args)
       end
 
@@ -35,7 +35,7 @@ module Excalibur
           configuration.send($1).send("update_#{$2}", *args)
         elsif meth.to_s =~ /^excalibur_set_(title|description+)_(content|option|combinator+)$/
           warn "[DEPRECATION] `excalibur_set_#{$1}_#{$2}` is deprecated.  Please use `exc_#{$1}_#{$2}` instead."
-          self.send("exc_#{$1}_#{$2}", *args)
+          send("exc_#{$1}_#{$2}", *args)
         else
           super
         end
@@ -46,7 +46,7 @@ module Excalibur
       end
 
       def excalibur_set_meta_tag(*args)
-        warn "[DEPRECATION] `excalibur_set_meta_tag` is deprecated.  Please use `exc_meta_tag` instead."
+        warn '[DEPRECATION] `excalibur_set_meta_tag` is deprecated.  Please use `exc_meta_tag` instead.'
         exc_meta_tag(*args)
       end
     end
