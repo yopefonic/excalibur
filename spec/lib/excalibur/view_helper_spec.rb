@@ -121,8 +121,12 @@ module Excalibur
     describe '#render_meta_tags' do
       context 'when the configuration is standard' do
         it 'should return a set of meta tags with the default content' do
-          expect(helpers.render_meta_tags).to include '<meta content="Excalibur; a worthy title for a gem about titles." name="description" />'
-          expect(helpers.render_meta_tags).to include '<meta content="width=device-width, initial-scale=1" name="viewport" />'
+          expect(helpers.render_meta_tags).to include '<meta'
+          expect(helpers.render_meta_tags).to include '/>'
+          expect(helpers.render_meta_tags).to include 'content="Excalibur; a worthy title for a gem about titles."'
+          expect(helpers.render_meta_tags).to include 'name="description"'
+          expect(helpers.render_meta_tags).to include 'content="width=device-width, initial-scale=1"'
+          expect(helpers.render_meta_tags).to include 'name="viewport"'
         end
       end
 
@@ -138,14 +142,21 @@ module Excalibur
         end
 
         it 'should return a title tag with the custom title content' do
-          expect(helpers.render_meta_tags).to include '<meta content="New custom description" name="description" />'
-          expect(helpers.render_meta_tags).to include '<meta content="width=device-width, initial-scale=1" name="viewport" />'
-          expect(helpers.render_meta_tags).to include '<meta content="baz" foo="bar" />'
-          expect(helpers.render_meta_tags).to include '<meta content="foo" foo="array" />'
-          expect(helpers.render_meta_tags).to include '<meta content="bar" foo="array" />'
-          expect(helpers.render_meta_tags).to include '<meta content="baz" foo="array" />'
-          expect(helpers.render_meta_tags).to include '<meta content="Excalibur::DummyDecorator" foo="proc" />'
-          expect(helpers.render_meta_tags).to_not include 'foo="nil" />'
+          expect(helpers.render_meta_tags).to include '<meta'
+          expect(helpers.render_meta_tags).to include '/>'
+          expect(helpers.render_meta_tags).to include 'content="New custom description"'
+          expect(helpers.render_meta_tags).to include 'name="description"'
+          expect(helpers.render_meta_tags).to include 'content="width=device-width, initial-scale=1"'
+          expect(helpers.render_meta_tags).to include 'name="viewport"'
+          expect(helpers.render_meta_tags).to include 'content="baz"'
+          expect(helpers.render_meta_tags).to include 'foo="bar"'
+          expect(helpers.render_meta_tags).to include 'foo="array"'
+          expect(helpers.render_meta_tags).to include 'content="foo"'
+          expect(helpers.render_meta_tags).to include 'content="bar"'
+          expect(helpers.render_meta_tags).to include 'content="baz"'
+          expect(helpers.render_meta_tags).to include 'content="Excalibur::DummyDecorator"'
+          expect(helpers.render_meta_tags).to include 'foo="proc"'
+          expect(helpers.render_meta_tags).to_not include 'foo="nil"'
         end
       end
     end
